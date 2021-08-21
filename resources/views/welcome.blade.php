@@ -61,6 +61,26 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .link {
+                margin-top: 50px;
+                transition: 0.4s;
+                font-weight: bold !important;
+                font-size: 20px;
+            }
+
+            .link > a {
+                text-decoration: none;
+                background: #EEEEEE;
+                padding: 16px 24px;
+                border-radius: 5px;
+                color: #444444;
+                font-weight: bold;
+            }
+
+            .link:hover {
+                transform: scale(1.05);
+            }
         </style>
     </head>
     <body>
@@ -80,20 +100,8 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <div style="font-size: 48px; font-weight: bold">Ricky Pudding Store</div>
+                <div class="link"><a href="{{ route('menu') }}">Explore</a></div>
             </div>
         </div>
     </body>
