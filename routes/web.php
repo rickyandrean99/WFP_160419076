@@ -75,3 +75,7 @@ Route::get('/menu/pudding/', function () {
 Route::get('/not-found', function() { 
     return view('notfound');
 })->name('not-found');
+
+Route::resource('product', 'ProductController');
+Route::resource('supplier', 'SupplierController');
+Route::resource('category', 'CategoryController');
