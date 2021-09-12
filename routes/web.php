@@ -79,3 +79,7 @@ Route::get('/not-found', function() {
 Route::resource('product', 'ProductController');
 Route::resource('supplier', 'SupplierController');
 Route::resource('category', 'CategoryController');
+
+Route::get('/report/showpudding/{name}', 'CategoryController@showPudding')->name('reportShowPudding');
+Route::get('/laporan/kategoriproduk', 'CategoryController@laporanKategori')->name('laporanKategoriProduk');
+Route::get('/report/reratajumlahstok', 'SupplierController@reportStok')->name('reportJumlahStok');

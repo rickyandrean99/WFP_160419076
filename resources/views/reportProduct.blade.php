@@ -17,24 +17,37 @@
 			margin:auto;
 			padding-top: 50px;
 		}
-
-		.pudding-image {
-			max-width: 70%;
-		}
 	</style>
 </head>
 <body>
 	<div id="container">
-		<div class="row">
-            @foreach($products as $p)
-				<div class="col-4 border border-light border-2 p-3 text-center">
-					<img class="pudding-image" src="{{ asset('img/'.$p->image) }}">
-					<div class="mt-3">
-						{{ $p->nama }}&nbsp;&nbsp;Rp. {{ $p->harga_jual }}
-					</div>
-				</div>
-            @endforeach
-        </div>
+        <h2>Product dengan kategori : {{ $category_name }}</h2>
+        <p>Data ditemukan berjumlah {{ count($result) }} dari {{ $getTotalData }}</p>
+		<table class="table">
+			<thead>
+				<tr>
+                    <td>ID</td>
+                    <td>Nama Produk</td>
+                    <td>Harga Produk</td>
+                    <td>Created At</td>
+                    <td>Updated At</td>
+                    <td>Category</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach($result as $d)
+				<tr>
+					<td>{{ $d->id }}</td>
+					<td>{{ $d->nama }}</td>
+					<td>{{ $d->harga_jual }}</td>
+					<td>{{ $d->created_at }}</td>
+					<td>{{ $d->updated_at }}</td>
+					<td>{{ $d->category->nama }}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

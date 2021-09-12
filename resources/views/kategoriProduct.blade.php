@@ -17,24 +17,29 @@
 			margin:auto;
 			padding-top: 50px;
 		}
-
-		.pudding-image {
-			max-width: 70%;
-		}
 	</style>
 </head>
 <body>
 	<div id="container">
-		<div class="row">
-            @foreach($products as $p)
-				<div class="col-4 border border-light border-2 p-3 text-center">
-					<img class="pudding-image" src="{{ asset('img/'.$p->image) }}">
-					<div class="mt-3">
-						{{ $p->nama }}&nbsp;&nbsp;Rp. {{ $p->harga_jual }}
-					</div>
-				</div>
-            @endforeach
-        </div>
+        <table class="table">
+			<thead>
+				<tr>
+                    <td>Nama Kategori</td>
+                    <td>Harga Minimum</td>
+                    <td>Harga Rata-Rata</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach($categories as $c)
+				<tr>
+					<td>{{ $c->nama }}</td>
+					<td>{{ $c->harga_minimum }}</td>
+					<td>{{ $c->harga_rata_rata }}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
