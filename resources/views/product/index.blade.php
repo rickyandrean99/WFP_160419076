@@ -1,40 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Daftar Produk</title>
+@extends('layouts.conquer2')
 
-	<!-- External Resource -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
 
-	<!-- Internal Resource -->
-	<style>
-		#container {
-			max-width: 70vw;
-			margin:auto;
-			padding-top: 50px;
-		}
+    .pudding-wrapper {
+        width: 24.5%;
+        display: inline-block;
+        text-align: center;
+        padding: 15px
+    }
 
-		.pudding-image {
-			max-width: 70%;
-		}
-	</style>
-</head>
-<body>
-	<div id="container">
+    .pudding-image {
+        max-width: 70%;
+    }
+
+    .pudding-text {
+        margin-top: 12px;
+        font-size: 14px;
+
+    }
+</style>
+
+@section('content')
+    <div class="container-fluid">
+        <h2 style="margin-bottom: 3%">Daftar Produk</h2>
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item mb-4">
+                <i class="fa fa-home"></i>
+                <a href="/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a href="{{ route('product.index') }}">Product</a></li>
+        </ul>
+
 		<div class="row">
             @foreach($products as $p)
-				<div class="col-4 border border-light border-2 p-3 text-center">
-					<img class="pudding-image" src="{{ asset('img/'.$p->image) }}">
-					<div class="mt-3">
-						{{ $p->nama }}&nbsp;&nbsp;Rp. {{ $p->harga_jual }}
-					</div>
+				<div class="pudding-wrapper">
+                    <a href="/product/{{ $p->id }}" style="text-decoration: none">
+                        <img class="pudding-image" src="{{ asset('img/'.$p->image) }}">
+                        <div class="pudding-text">{{ $p->nama }}&nbsp;&nbsp;Rp. {{ $p->harga_jual }}</div>
+                    </a>
 				</div>
             @endforeach
         </div>
 	</div>
-</body>
-</html>
+
+    <script>
+        let element = document.querySelector('.product');
+        element.classList.add('active');
+    </script>
+@endsection
