@@ -83,3 +83,5 @@ Route::resource('category', 'CategoryController');
 Route::get('/report/showpudding/{name}', 'CategoryController@showPudding')->name('reportShowPudding');
 Route::get('/laporan/kategoriproduk', 'CategoryController@laporanKategori')->name('laporanKategoriProduk');
 Route::get('/report/reratajumlahstok', 'SupplierController@reportStok')->name('reportJumlahStok');
+Route::post('supplier/showInfo/', 'SupplierController@showInfo')->name('suppliers.showinfo');
+Route::post('supplier/showDataAjax/', 'SupplierController@showAjax')->name('suppliers.showAjax');

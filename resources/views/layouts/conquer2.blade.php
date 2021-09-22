@@ -46,6 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('conquer2/assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
+@yield('ajaxquery')
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->

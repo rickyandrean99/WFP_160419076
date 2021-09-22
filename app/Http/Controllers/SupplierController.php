@@ -85,4 +85,22 @@ class SupplierController extends Controller
     {
         //
     }
+
+    public function showInfo(Request $request) {
+        return response()->json(array(
+            'message' => 'Ini adalah informasi terkait Data Supplier',
+            'status' => 'OK'
+        ), 200);
+    }
+
+    public function showAjax(Request $request) {
+        $data = $request->get('id');
+        $data = Supplier::find($data);
+
+        $dataProduk = $data->products;
+        
+        return response()->json(array(
+            'message'=> view('supplier.showmodal', compact('data', 'dataProduk'))->render()
+        ), 200);
+    }
 }
