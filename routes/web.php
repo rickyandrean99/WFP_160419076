@@ -79,9 +79,11 @@ Route::get('/not-found', function() {
 Route::resource('product', 'ProductController');
 Route::resource('supplier', 'SupplierController');
 Route::resource('category', 'CategoryController');
+Route::resource('transaction', 'TransactionController');
 
 Route::get('/report/showpudding/{name}', 'CategoryController@showPudding')->name('reportShowPudding');
 Route::get('/laporan/kategoriproduk', 'CategoryController@laporanKategori')->name('laporanKategoriProduk');
 Route::get('/report/reratajumlahstok', 'SupplierController@reportStok')->name('reportJumlahStok');
 Route::post('supplier/showInfo/', 'SupplierController@showInfo')->name('suppliers.showinfo');
 Route::post('supplier/showDataAjax/', 'SupplierController@showAjax')->name('suppliers.showAjax');
+Route::post('transaction/showDataAjax/', 'TransactionController@showAjax')->name('transaction.showAjax');

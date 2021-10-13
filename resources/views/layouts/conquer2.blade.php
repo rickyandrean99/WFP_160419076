@@ -502,6 +502,12 @@ License: You must have a valid license purchased only from themeforest(the above
 					<span class="title">Supplier</span>
 					</a>
 				</li>
+                <li class="transaction">
+					<a href="{{ route('transaction.index') }}">
+					<i class="icon-user"></i>
+					<span class="title">Transaction</span>
+					</a>
+				</li>
 				<!-- <li>
 					<a href="javascript:;">
 					<i class="icon-puzzle"></i>
