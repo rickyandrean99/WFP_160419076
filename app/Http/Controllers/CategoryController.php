@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("category.create");
     }
 
     /**
@@ -39,7 +39,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Category();
+        $data->nama = $request->get("nama");
+        $data->save();
+
+        return redirect()->route("category.index")->with("status", "Data Category Berhasil Ditambah!");
     }
 
     /**

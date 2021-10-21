@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
+    public $timestamps = false;
+    
     public function products() {
         return $this->hasMany('App\Product', 'supplier_id');
     }

@@ -22,15 +22,16 @@
     <div id="container-fluid">
         <h2 style="margin-bottom: 3%">Daftar Supplier</h2>
 
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item mb-4">
+        <ul class="breadcrumb mb-4" style="position: relative">
+            <li class="breadcrumb-item">
                 <i class="fa fa-home"></i>
                 <a href="/">Dashboard</a>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('supplier.index') }}">Supplier</a></li>
+            <a href="supplier/create" class="btn btn-primary" style="position: absolute; right: 0; top: 0">Tambah Supplier</a>
         </ul>
 
-        <div class="panel panel-default">
+        <!-- <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     Informasi Rinci Untuk Anda
@@ -42,8 +43,12 @@
             <div class="panel-body">
                 
             </div>
-        </div>
+        </div> -->
 
+        @if (session('status'))
+            <div class="alert alert-success my-2">{{ session('status') }}</div>
+        @endif
+        
 		<table class="table">
 			<thead>
 				<tr>

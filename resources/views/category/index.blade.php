@@ -4,13 +4,18 @@
     <div class="container-fluid">
         <h2 style="margin-bottom: 3%">Daftar Kategori</h2>
 
-        <ul class="breadcrumb">
+        <ul class="breadcrumb" style="position: relative">
             <li class="breadcrumb-item mb-4">
                 <i class="fa fa-home"></i>
                 <a href="/">Dashboard</a>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
+            <a href="category/create" class="btn btn-primary" style="position: absolute; right: 0; top: 0">Tambah Category</a>
         </ul>
+
+        @if (session('status'))
+            <div class="alert alert-success my-2">{{ session('status') }}</div>
+        @endif
 
 		<table class="table">
 			<thead>

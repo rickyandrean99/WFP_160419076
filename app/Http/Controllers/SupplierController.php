@@ -27,7 +27,8 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view("supplier.create");
     }
 
     /**
@@ -38,7 +39,12 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Supplier();
+        $data->name = $request->get("nama");
+        $data->address = $request->get("alamat");
+        $data->save();
+
+        return redirect()->route("supplier.index")->with("status", "Data Supplier Berhasil Ditambah!");
     }
 
     /**
