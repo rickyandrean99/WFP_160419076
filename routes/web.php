@@ -87,3 +87,7 @@ Route::get('/report/reratajumlahstok', 'SupplierController@reportStok')->name('r
 Route::post('supplier/showInfo/', 'SupplierController@showInfo')->name('suppliers.showinfo');
 Route::post('supplier/showDataAjax/', 'SupplierController@showAjax')->name('suppliers.showAjax');
 Route::post('transaction/showDataAjax/', 'TransactionController@showAjax')->name('transaction.showAjax');
+Route::post('/supplier/getEditForm', 'SupplierController@getEditForm')->name('supplier.getEditForm');
+Route::post('/supplier/getEditForm2', 'SupplierController@getEditForm2')->name('supplier.getEditForm2');
+Route::post('/supplier/saveData', 'SupplierController@saveData')->name('supplier.saveData');
+Route::post('/supplier/deleteData', 'SupplierController@deleteData')->name('supplier.deleteData');

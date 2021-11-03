@@ -27,7 +27,6 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        
         return view("supplier.create");
     }
 
@@ -66,7 +65,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('supplier.edit', compact('supplier'));
     }
 
     /**
@@ -78,7 +77,11 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $supplier->name = $request->get('nama');
+        $supplier->address = $request->get('alamat');
+        $supplier->save();
+
+        return redirect()->route('supplier.index')->with('status', 'Data supplier berhasil diubah');
     }
 
     /**
@@ -89,7 +92,13 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        try {
+            $supplier->delete();
+            return redirect()->route('supplier.index')->with('status', 'Data supplier berhasil dihapus');
+        } catch(\PDOException $e) {
+            $msg = "Supplier gagal dihapus. Pastikan data child sudah hilang atau tidak berhubungan dengan supplier ini";
+            return redirect()->route('supplier.index')->with('error', $msg);
+        }
     }
 
     public function showInfo(Request $request) {
@@ -108,5 +117,56 @@ class SupplierController extends Controller
         return response()->json(array(
             'message'=> view('supplier.showmodal', compact('data', 'dataProduk'))->render()
         ), 200);
+    }
+
+    public function getEditForm(Request $request) {
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('supplier.editModal', compact('data'))->render()
+        ), 200);
+    }
+
+    public function getEditForm2(Request $request) {
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('supplier.editModal2', compact('data'))->render()
+        ), 200);
+    }
+
+    public function saveData(Request $request) {
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+        $supplier->name = $request->get('name');
+        $supplier->address = $request->get('address');
+        $supplier->save();
+
+        return response()->json(array(
+            'status' => 'ok',
+            'msg' => 'Supplier Data Updated'
+        ), 200);
+    }
+
+    public function deleteData(Request $request) {
+        try {
+            $id = $request->get('id');
+            $supplier = Supplier::find($id);
+            $supplier->delete();
+
+            return response()->json(array(
+                'status' => 'ok',
+                'msg' => 'supplier data deleted'
+            ), 200);
+        } catch(\PDOException $e) {
+            return response()->json(array(
+                'status' => 'error',
+                'msg' => 'supplier is not deleted. It may be used in the product'
+            ), 200);
+        }
     }
 }
