@@ -97,3 +97,6 @@ Route::post('/product/getEditForm', 'ProductController@getEditForm')->name('prod
 Route::post('/product/getEditForm2', 'ProductController@getEditForm2')->name('product.getEditForm2');
 Route::post('/product/saveData', 'ProductController@saveData')->name('product.saveData');
 Route::post('/product/deleteData', 'ProductController@deleteData')->name('product.deleteData');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
