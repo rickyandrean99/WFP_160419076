@@ -101,20 +101,6 @@
             <a class="btn btn-primary" data-toggle="modal" href="#modalCreate" style="position: absolute; right: 0; top: 0">+ Tambah Supplier (Modal)</a>
         </ul>
 
-        <!-- <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    Informasi Rinci Untuk Anda
-                    <a class="btn btn-default" href="#" onclick="showInfo()">
-                        Lihat Rincian Pesan
-                    </a>
-                </h3>
-            </div>
-            <div class="panel-body">
-                
-            </div>
-        </div> -->
-
         @if (session('status'))
             <div class="alert alert-success my-2">{{ session('status') }}</div>
         @endif

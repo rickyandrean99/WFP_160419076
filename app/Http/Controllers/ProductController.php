@@ -21,12 +21,15 @@ class ProductController extends Controller
         // $query_raw = DB::select(DB::raw('SELECT * FROM products'));
 
         // Query Builder
-        $query_builder = DB::table('products')->get();
+        // $query_builder = DB::table('products')->get();
+        $query_builder = Product::all();
+        $categories = Category::all();
+        $suppliers = Supplier::all();
 
         // Query Model
         // $query_model = Product::all();
 
-        return view('product.index', ['products' => $query_builder]);
+        return view('product.index', ['products' => $query_builder, 'categories' => $categories, 'suppliers' => $suppliers]);
         // return view('product.index', compact('query_builder'));
     }
 
@@ -96,7 +99,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->nama = $request->get('nama');
+        $product->stok = $request->get('stok');
+        $product->harga_jual = $request->get('harga_jual');
+        $product->harga_produksi = $request->get('harga_produksi');
+        $product->category_id = $request->get('kategori');
+        $product->supplier_id = $request->get('supplier');
+        $product->image = $request->get('image');
+        $product->save();
+
+        return redirect()->route('product.index')->with('status', 'Data produk berhasil diubah');
     }
 
     /**
@@ -108,5 +120,65 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function getEditForm(Request $request) {
+        $id = $request->get('id');
+        $data = Product::find($id);
+        $categories = Category::all();
+        $suppliers = Supplier::all();
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('product.editModal', compact('data', 'categories', 'suppliers'))->render()
+        ), 200);
+    }
+
+    public function getEditForm2(Request $request) {
+        $id = $request->get('id');
+        $data = Product::find($id);
+        $categories = Category::all();
+        $suppliers = Supplier::all();
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('product.editModal2', compact('data', 'categories', 'suppliers'))->render()
+        ), 200);
+    }
+
+    public function saveData(Request $request) {
+        $id = $request->get('id');
+        $product = Product::find($id);
+        $product->nama = $request->get('nama');
+        $product->stok = $request->get('stok');
+        $product->harga_jual = $request->get('harga_jual');
+        $product->harga_produksi = $request->get('harga_produksi');
+        $product->category_id = $request->get('category_id');
+        $product->supplier_id = $request->get('supplier_id');
+        $product->image = $request->get('image');
+        $product->save();
+
+        return response()->json(array(
+            'status' => 'ok',
+            'msg' => 'Product Data Updated'
+        ), 200);
+    }
+
+    public function deleteData(Request $request) {
+        try {
+            $id = $request->get('id');
+            $product = Product::find($id);
+            $product->delete();
+
+            return response()->json(array(
+                'status' => 'ok',
+                'msg' => 'product data deleted'
+            ), 200);
+        } catch(\PDOException $e) {
+            return response()->json(array(
+                'status' => 'error',
+                'msg' => 'product is not deleted. It may be used in the transaction'
+            ), 200);
+        }
     }
 }
