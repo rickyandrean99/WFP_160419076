@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('checkmember', 'App\Policies\MemberPolicy@checkmember');
         //
     }
 }

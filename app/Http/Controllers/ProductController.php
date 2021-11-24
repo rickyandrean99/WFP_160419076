@@ -181,4 +181,41 @@ class ProductController extends Controller
             ), 200);
         }
     }
+
+    public function front_index() {
+        $products = Product::all();
+        return view('frontend.product', compact('products'));
+    }
+
+    public function addToCart($id) {
+        $p = Product::find($id);
+        $cart = session()->get('cart');
+
+        if (!isset($cart[$id])) {
+            $cart[$id] = [
+                "nama" => $p->nama,
+                "quantity" => 1,
+                "price" => $p->harga_jual,
+                "photo" => $p->image
+            ];
+        } else {
+            $cart[$id]['quantity']++;
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function cart() {
+        return view('frontend.cart');
+    }
+
+    public function form_submit_front() {
+        $this->authorize('checkmember');
+        return view('frontend.checkout');
+    }
+
+    public function submit_front() {
+        $this->authorize('checkmember');
+    }
 }
