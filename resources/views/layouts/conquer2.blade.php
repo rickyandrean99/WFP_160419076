@@ -632,6 +632,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('conquer2/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('conquer2/assets/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('conquer2/assets/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('plugins/jquery.editable.min.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <!-- END PAGE LEVEL SCRIPTS -->
@@ -650,6 +651,8 @@ jQuery(document).ready(function() {
    Tasks.initDashboardWidget();
 });
 </script>
+
+@yield('initialscript')
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->

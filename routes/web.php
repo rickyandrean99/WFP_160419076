@@ -107,3 +107,5 @@ Route::get('/add-to-cart/{id}','ProductController@addToCart');
 
 Route::get('/checkout',"TransactionController@form_submit_front")->middleware(['auth']);
 Route::get('/submit_checkout',"TransactionController@submit_front")->name('submitcheckout')->middleware(['auth']);
+
+Route::post("/supplier/savedatafield", "SupplierController@saveDataField")->name("supplier.saveDataField");

@@ -169,4 +169,19 @@ class SupplierController extends Controller
             ), 200);
         }
     }
+
+    public function saveDataField(Request $request) {
+        $id = $request->get("id");
+        $fname = $request->get("fname");
+        $value = $request->get("value");
+
+        $supplier = Supplier::find($id);
+        $supplier->$fname = $value;
+        $supplier->save();
+
+        return response()->json(array(
+            "status" => "ok",
+            "msg" => "Supplier Data Updated"
+        ), 200);
+    }
 }

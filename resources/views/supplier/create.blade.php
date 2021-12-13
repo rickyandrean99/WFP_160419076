@@ -17,7 +17,7 @@
             <li class="breadcrumb-item"><a href="{{ route('supplier.create') }}">Create</a></li>
         </ul>
 
-        <form action="{{ route('supplier.store') }}" method="post">
+        <form action="{{ route('supplier.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama Supplier</label>
@@ -26,6 +26,10 @@
             <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat Supplier</label>
                 <input type="text" class="form-control" id="alamat" name="alamat">
+            </div>
+            <div class="mb-3">
+                <label for="">Logo</label>
+                <input type="text">
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>

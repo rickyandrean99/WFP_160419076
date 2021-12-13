@@ -87,6 +87,35 @@
     </script>
 @endsection
 
+@section('initialscript')
+    <script>
+        $('.editable').editable({
+            closeOnEnter: true,
+            callback: (data) => {
+                if (data.content) {
+                    let s_id = data.$el[0].id
+                    let fname = s_id.split('_')[1]
+                    let id = s_id.split('_')[2]
+
+                    $.ajax({
+                        type: 'POST',
+                        url: `{{ route('supplier.saveDataField') }}`,
+                        data: {
+                            '_token': '<?php echo csrf_token(); ?>',
+                            'id': id,
+                            'fname': fname,
+                            'value': data.content
+                        },
+                        success: (data) => {
+                            alert(data.msg)
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+@endsection
+
 @section('content')
     <div id="container-fluid">
         <h2 style="margin-bottom: 3%">Daftar Supplier</h2>
@@ -123,8 +152,8 @@
 				@foreach($supplier as $s)
 				<tr id="tr_{{ $s->id }}">
 					<th scope="row">{{ $s->id }}</th>
-					<td id="td_name_{{ $s->id }}">{{ $s->name }}</td>
-					<td id="td_address_{{ $s->id }}">{{ $s->address }}</td>
+					<td class="editable" id="td_name_{{ $s->id }}">{{ $s->name }}</td>
+					<td class="editable" id="td_address_{{ $s->id }}">{{ $s->address }}</td>
 					<td>
                         <a href="{{ route('supplier.show', $s->id) }}" class="btn btn-default" data-target="#mymodal" data-toggle="modal">Show</a>
                         <a class="btn btn-default" data-toggle="modal" href="#basic" onclick="getDetailData({{ $s->id }})">Show w/ Ajax</a>
